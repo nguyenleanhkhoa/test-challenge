@@ -8,7 +8,7 @@ class TodoNotApprovedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<TodoBloc, TodoState>(
       listener: (context, state) {
-        // TODO: implement listener
+        // do some thing here
       },
       builder: (context, state) {
         if (state is ShowListState) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/src/bloc/todo_bloc/todo_bloc.dart';
+import 'package:todo_app/src/screens/todo_all.screen.dart';
 import 'package:todo_app/src/screens/todo_approved.screen.dart';
 import 'package:todo_app/src/screens/todo_notapproved.screen.dart';
 import 'package:todo_app/src/widgets/float_action_button.widget.dart';
@@ -29,6 +30,7 @@ class _TodoScreenState extends State<TodoScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
+          BottomNavigationBarItem(icon: Icon(Icons.all_inbox), label: "All"),
           BottomNavigationBarItem(
               icon: Icon(Icons.delete), label: "Not Approved"),
           BottomNavigationBarItem(icon: Icon(Icons.check), label: "Appropved"),
@@ -41,8 +43,17 @@ class _TodoScreenState extends State<TodoScreen> {
           });
         },
       ),
-      body:
-          _selectedIndex == 0 ? TodoNotApprovedScreen() : TodoApprovedScreen(),
+      body: changeScreen(_selectedIndex),
     );
+  }
+
+  Widget changeScreen(int index) {
+    if (index == 0) {
+      return TodoAllScreen();
+    } else if (index == 1) {
+      return TodoNotApprovedScreen();
+    } else {
+      return TodoApprovedScreen();
+    }
   }
 }
